@@ -1,0 +1,7 @@
+{
+  "name": "GoogleMap-Search",
+  "description": "",
+  "version": "1.0",
+  "background": { "scripts": ["background.js"] },
+  "manifest_version": 1
+}
