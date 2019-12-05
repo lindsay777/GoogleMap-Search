@@ -5,21 +5,35 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 // TODO: avoid duplicate button
 function addSearchBtn(title) {
-    var titlePosition = document.querySelector(".section-hero-header-title-title");
+    createButton(title, "google", null);
 
-    // TODO: beautify button
+  }
+
+function createButton(title, keyword, previousElement) {
+    if (previousElement == null) {
+       var position = document.querySelector(".section-hero-header-title-title");
+    }else{
+       var position = previousElement
+    }
+
     // TODO: add addition keyword option
-    var buttton = document.createElement("input");
-    buttton.type = "button";
-    buttton.value = "googleSearch";
-    buttton.name = "googleSearch";
-    buttton.onclick = function() {
-        query = title.split(" ")[0];
+    var button = document.createElement("button");
+    button.id = keyword + "_icon";
+    button.type = "button";
+    button.setAttribute("style", "padding-left:5px;");
+    button.onclick = function() {
+        query = title.split(" ")[0] + " " + keyword;
         window.open('http://google.com/search?q='+query);
     };
 
-    // HINT: also check button exist
-    if (titlePosition != null){
-        titlePosition.appendChild(buttton);
+    var icon = document.createElement("img");
+    icon.src = chrome.extension.getURL("icon/" + keyword + ".png");
+
+    // also check button exist
+    buttonExist = document.getElementById(button.id);
+
+    if (position != null && buttonExist == null){
+        button.appendChild(icon);
+        position.appendChild(button);
     }
   }

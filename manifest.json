@@ -9,6 +9,7 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "web_accessible_resources":["icon/google.png"],
   "permissions": ["tabs"],
   "manifest_version": 2
 }
